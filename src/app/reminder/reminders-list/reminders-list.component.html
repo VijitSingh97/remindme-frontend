@@ -1,0 +1,47 @@
+<div class='card'>
+    <div class='card-header'>
+        {{pageTitle}}
+    </div>
+    <div class='card-body'>
+        <div class='row'>
+            <div class='col-md-2'>Filter by:</div>
+            <div class='col-md-4'>
+                <input type='text' 
+                        [(ngModel)]='listFilter'/>
+            </div>
+        </div>
+        <div class='row'>
+            <div class='col-md-6'>
+                <h4>Filtered by: {{listFilter}}</h4>
+            </div>
+        </div>
+        <div class='table-responsive'>
+            <table class='table'>
+                <thead>
+                    <tr>
+                        <th>Remind at</th>
+                        <th>Created at</th>
+                        <th>Modified at</th>
+                        <th>Subject</th>
+                        <th>
+                            <button class='btn btn-primary'
+                                (click)='toggleContent()'>
+                                {{showContent ? 'Hide' : 'Show'}} Content
+                            </button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody 
+                    *ngIf='reminders && reminders.length'>
+                    <tr *ngFor='let reminder of filteredReminders'>
+                        <td>{{ reminder.remindAt }}</td>
+                        <td>{{ reminder.createdAt }}</td>
+                        <td>{{ reminder.modifiedAt }}</td>
+                        <td>{{ reminder.subject }}</td>
+                        <td *ngIf='showContent'>{{ reminder.content }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
